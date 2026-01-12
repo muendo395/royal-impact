@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,11 +58,43 @@
   </footer>
 
   <!-- ============================== -->
-  <!-- AI CHATBOT EMBED PLACEHOLDER -->
-  <!-- Paste your FREE chatbot script below -->
-  <!-- Example:
-  <script src="https://your-chatbot-provider.com/widget.js"></script>
-  -->
+  <!-- FREE IN-BROWSER AI CHATBOT -->
+  <div id="chatbot" style="position:fixed;bottom:20px;right:20px;width:300px;height:400px;background:#fff;border:1px solid #ccc;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.2);overflow:hidden;z-index:1000;">
+    <div id="chat-header" style="background:#111;color:#fff;padding:10px;text-align:center;">RIA AI Assistant</div>
+    <div id="chat-body" style="padding:10px;height:300px;overflow-y:auto;font-size:14px;"></div>
+    <input type="text" id="chat-input" placeholder="Type your question..." style="width:100%;box-sizing:border-box;padding:10px;border:none;border-top:1px solid #ccc;">
+  </div>
+
+  <script>
+  const chatBody = document.getElementById('chat-body');
+  const chatInput = document.getElementById('chat-input');
+
+  chatInput.addEventListener('keypress', function(e){
+    if(e.key === 'Enter' && chatInput.value.trim() !== ''){
+      const userMsg = chatInput.value;
+      appendMessage('You', userMsg);
+      chatInput.value = '';
+
+      // Simple free AI logic
+      setTimeout(()=> {
+        let reply = "Sorry, I am still learning. You asked: " + userMsg;
+        if(userMsg.toLowerCase().includes('ria')){
+          reply = "Welcome to RIA! How can I assist you today?";
+        } else if(userMsg.toLowerCase().includes('community')){
+          reply = "Our community is focused on sharing knowledge and empowering members.";
+        } else if(userMsg.toLowerCase().includes('submit')){
+          reply = "You can submit your ideas using the form on this page!";
+        }
+        appendMessage('RIA AI', reply);
+      }, 500);
+    }
+  });
+
+  function appendMessage(sender, text){
+    chatBody.innerHTML += `<p><strong>${sender}:</strong> ${text}</p>`;
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  </script>
   <!-- ============================== -->
 
 </body>
