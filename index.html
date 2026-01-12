@@ -2,100 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Royal Impact Association (RIA)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Impact Association</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>Royal Impact Association (RIA)</h1>
-    <p>Empowering Communities Through Innovation & Collective Action</p>
+    <h1>Royal Impact Association</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#login" id="login-btn">Login/Signup</a>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#community">Community</a>
-    <a href="#submit">Submit Ideas</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to Royal Impact Association</h2>
+    <p>Empowering communities, inspiring change, and creating impact.</p>
+  </section>
 
+  <!-- About Section -->
   <section id="about">
-    <h2>About RIA</h2>
-    <p>
-      Royal Impact Association (RIA) is a community-driven organization focused on creating
-      positive change through technology, innovation, and collaboration. We bring people together
-      to share ideas, solve problems, and build a better future.
-    </p>
+    <h2>About Us</h2>
+    <p>Royal Impact Association (RIA) is committed to community development, education, and empowerment initiatives that transform lives and promote sustainable growth.</p>
   </section>
 
-  <section id="community">
-    <h2>Community Space</h2>
-    <p>
-      This is a collective space where members can connect, share knowledge, and support one another.
-      Our AI assistant is available to help answer questions and guide members.
-    </p>
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Community Development Programs</li>
+      <li>Educational Workshops</li>
+      <li>Health & Wellness Campaigns</li>
+      <li>Volunteer & Mentorship Opportunities</li>
+    </ul>
   </section>
 
-  <section id="submit">
-    <h2>Submit Your Idea</h2>
-    <form>
-      <input type="text" placeholder="Your name" required>
-      <input type="email" placeholder="Your email" required>
-      <textarea placeholder="Describe your idea..." required></textarea>
-      <button type="submit">Send Idea</button>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
     </form>
   </section>
 
-  <section id="contact">
-    <h2>Contact RIA</h2>
-    <p>Email: info@royalimpactassociation.org</p>
-    <p>Location: Kenya</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Royal Impact Association (RIA). All rights reserved.</p>
-  </footer>
-
-  <!-- ============================== -->
-  <!-- FREE IN-BROWSER AI CHATBOT -->
-  <div id="chatbot" style="position:fixed;bottom:20px;right:20px;width:400px;height:300px;background:#fff;border:1px solid #ccc;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.2);overflow:hidden;z-index:1000;">
-    <div id="chat-header" style="background:#111;color:#fff;padding:10px;text-align:center;">RIA AI Assistant</div>
-    <div id="chat-body" style="padding:10px;height:300px;overflow-y:auto;font-size:14px;"></div>
-    <input type="text" id="chat-input" placeholder="Type your question..." style="width:100%;box-sizing:border-box;padding:10px;border:none;border-top:1px solid #ccc;">
+  <!-- Chatbot Section -->
+  <div id="chatbot">
+    <div id="chatbox">
+      <div id="chatlogs"></div>
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button id="sendBtn">Send</button>
+    </div>
   </div>
 
-  <script>
-  const chatBody = document.getElementById('chat-body');
-  const chatInput = document.getElementById('chat-input');
+  <!-- Login/Signup Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login / Signup</h2>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="signupBtn">Signup</button>
+      <button id="loginUserBtn">Login</button>
+      <p id="login-msg"></p>
+    </div>
+  </div>
 
-  chatInput.addEventListener('keypress', function(e){
-    if(e.key === 'Enter' && chatInput.value.trim() !== ''){
-      const userMsg = chatInput.value;
-      appendMessage('You', userMsg);
-      chatInput.value = '';
-
-      // Simple free AI logic
-      setTimeout(()=> {
-        let reply = "Sorry, I am still learning. You asked: " + userMsg;
-        if(userMsg.toLowerCase().includes('ria')){
-          reply = "Welcome to RIA! How can I assist you today?";
-        } else if(userMsg.toLowerCase().includes('community')){
-          reply = "Our community is focused on sharing knowledge and empowering members.";
-        } else if(userMsg.toLowerCase().includes('submit')){
-          reply = "You can submit your ideas using the form on this page!";
-        }
-        appendMessage('RIA AI', reply);
-      }, 500);
-    }
-  });
-
-  function appendMessage(sender, text){
-    chatBody.innerHTML += `<p><strong>${sender}:</strong> ${text}</p>`;
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
-  </script>
-  <!-- ============================== -->
-
+  <script src="chatbot.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
